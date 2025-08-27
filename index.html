@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Yape → Telegram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-title">
+                <div class="app-icon">📱</div>
+                <h1>Monitor de Notificaciones Yape → Telegram</h1>
+            </div>
+            <div class="service-status" id="serviceStatus">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span class="status-text" id="statusText">Desconectado</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Configuration Section -->
+            <section class="card config-section">
+                <div class="card__body">
+                    <h2>Configuración del Bot de Telegram</h2>
+                    <div class="config-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="botToken">Token del Bot</label>
+                            <input type="text" id="botToken" class="form-control" placeholder="123456:ABCDEF..." value="EJEMPLO_BOT_TOKEN_123456:ABCDEF">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="chatId">Chat ID</label>
+                            <input type="text" id="chatId" class="form-control" placeholder="-1001234567890" value="-1001234567890">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn--primary btn--full-width" id="toggleService">
+                                <span id="toggleButtonText">Conectar Servicio</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-grid">
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-icon yape-color">💰</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="notificationCount">0</div>
+                            <div class="stat-label">Notificaciones</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-icon telegram-color">📤</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="sentCount">0</div>
+                            <div class="stat-label">Enviadas</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-icon success-color">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="successCount">0</div>
+                            <div class="stat-label">Exitosas</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-icon error-color">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="errorCount">0</div>
+                            <div class="stat-label">Errores</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simulator Section -->
+            <section class="card simulator-section">
+                <div class="card__body">
+                    <div class="simulator-header">
+                        <h2>Simulador de Notificaciones</h2>
+                        <button class="btn btn--secondary" id="simulateBtn">
+                            🔔 Simular Notificación Yape
+                        </button>
+                    </div>
+                    <div class="notifications-container">
+                        <h3>Notificaciones Recibidas</h3>
+                        <div class="notifications-list" id="notificationsList">
+                            <div class="no-notifications">
+                                No hay notificaciones aún. Conecta el servicio o simula una notificación.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- JSON Processing Section -->
+            <section class="card json-section">
+                <div class="card__body">
+                    <h2>Procesamiento JSON para Telegram</h2>
+                    <div class="json-container">
+                        <h3>Último JSON Generado</h3>
+                        <pre class="json-output" id="jsonOutput">
+{
+  "text": "Esperando notificación...",
+  "parse_mode": "HTML",
+  "chat_id": "-1001234567890"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Log Section -->
+            <section class="card log-section">
+                <div class="card__body">
+                    <div class="log-header">
+                        <h2>Log de Actividad</h2>
+                        <button class="btn btn--outline btn--sm" id="clearLogBtn">Limpiar Log</button>
+                    </div>
+                    <div class="log-container" id="logContainer">
+                        <div class="log-entry log-info">
+                            <span class="log-time">[23:07:54]</span>
+                            <span class="log-message">Sistema iniciado. Listo para recibir notificaciones.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
